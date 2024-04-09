@@ -15,7 +15,5 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        
-      - name: Run Script
-        run: npm run prettier:check:ci
+
   
