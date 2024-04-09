@@ -1,22 +1,21 @@
-name: run-prettier
+name: Run Prettier
 on: [push]
+
 jobs:
-  prettier:
-    name: Prettier
+  build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20]
+
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - uses: actions/checkout@v2
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - name: Install dependencies
-        run: npm install -D
-      - name: Check formatting with Prettier
-        runs: 
-          using: 'node20'
-          main: npm prettier:check:ci
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Script
+        run: npm run prettier:format
+  
