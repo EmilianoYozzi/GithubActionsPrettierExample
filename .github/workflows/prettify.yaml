@@ -3,7 +3,7 @@ on: [push]
 jobs:
   prettier:
     name: Prettier
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20]
