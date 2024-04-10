@@ -6,9 +6,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: Adzz/jest_test_action@v1.0.0
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          package-manager: npm
-          command: prettier:format
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          # This part is also where you can pass other options, for example:
+          prettier_options: --write **/*.{js,md}
       
