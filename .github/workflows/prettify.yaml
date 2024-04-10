@@ -2,21 +2,13 @@ name: Run Prettier
 on: [push]
 
 jobs:
-  build:
+  prettier:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: Adzz/jest_test_action@v1.0.0
         with:
-          node-version: "20"
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run Script
-        run: npm run prettier:check:ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          package-manager: npm
+          command: prettier:format
+      
